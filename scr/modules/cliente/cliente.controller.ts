@@ -1,13 +1,14 @@
 import { Controller, Get, Post, Body, Render } from '@nestjs/common';
+import { ClienteService } from './cliente.service';
 
 @Controller('clientes')
 export class ClienteController {
-  private clientes = [];
+  constructor(private readonly clienteService: ClienteService) {}
 
   @Get()
   @Render('cliente/index')
   listar() {
-    return { clientes: this.clientes };
+    return { clientes: this.clienteService.findAll() };
   }
 
   @Get('/novo')
@@ -17,8 +18,8 @@ export class ClienteController {
   }
 
   @Post()
-  criar(@Body() body) {
-    this.clientes.push(body);
+  criar(@Body() body: any) {
+    this.clienteService.create(body);
     return { message: 'ok' };
   }
 }

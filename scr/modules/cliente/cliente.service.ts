@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ClienteService {
-  private clientes = [];
+  private clientes: any[] = [];
 
-  create(cliente) {
+  create(cliente: any) {
     this.clientes.push(cliente);
   }
 
