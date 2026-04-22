@@ -14,6 +14,7 @@ namespace WashApi.DataContexts
         // public DbSet<Equipe> Equipes { get; set; }
         // public DbSet<CategoriaServico> CategoriasServico { get; set; }
         // public DbSet<Servico> Servicos { get; set; }
-        // public DbSet<Agendamento> Agendamentos { get; set; }
+
+           public DbSet<Agendamento> Agendamentos { get; set; }
     }
 }
