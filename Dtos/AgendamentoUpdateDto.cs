@@ -8,13 +8,13 @@ namespace WashApi.Dtos
         public int ClienteId { get; set; }
 
         [Required(ErrorMessage = "A data é obrigatória")]
-        public DateOnly Data { get; set; }
+        public DateTime Data { get; set; }
 
         [Required(ErrorMessage = "O horário de início é obrigatório")]
-        public TimeOnly HorarioInicio { get; set; }
+        public TimeSpan HorarioInicio { get; set; }
 
         [Required(ErrorMessage = "O horário de fim é obrigatório")]
-        public TimeOnly HorarioFim { get; set; }
+        public TimeSpan HorarioFim { get; set; }
 
         public string? Observacao { get; set; }
 

@@ -11,7 +11,7 @@ namespace WashApi.Models
 
         [Column("cliente_id")]
         public int ClienteId { get; set; }
-        public Cliente Cliente { get; set; }
+        public Cliente Cliente { get; set; } = null!;
 
         [Column("data")]
         public DateTime Data { get; set; }
@@ -26,15 +26,15 @@ namespace WashApi.Models
         public string? Observacao { get; set; }
 
         [Column("status")]
-        public string Status { get; set; }
+        public string Status { get; set; } = null!;
 
         [Column("funcionario_id")]
-        public int FuncionarioId { get; set; }
-        public Funcionario Funcionario { get; set; }
+        public int? FuncionarioId { get; set; }
+        public Funcionario? Funcionario { get; set; }
 
         [Column("equipe_id")]
-        public int EquipeId { get; set; }
-        public Equipe Equipe { get; set; }
+        public int? EquipeId { get; set; }
+        public Equipe? Equipe { get; set; }
 
         public ICollection<AgendamentoServico>? AgendamentoServicos { get; set; }
     }
