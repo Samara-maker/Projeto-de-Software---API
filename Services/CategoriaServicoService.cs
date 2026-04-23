@@ -1,6 +1,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using WashApi.DataContexts;
+using .DataContexts;
 using WashApi.Dtos;
 using WashApi.Exceptions;
 using WashApi.Models;
