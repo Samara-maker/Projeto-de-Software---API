@@ -12,11 +12,8 @@ namespace WashApi.DataContexts
 
         public DbSet<Cliente> Clientes { get; set; }
 
-        // 🔥 CORREÇÃO DOS ERROS
         public DbSet<Servico> Servicos { get; set; }
         public DbSet<CategoriaServico> CategoriasServico { get; set; }
-
-        // (se seu projeto tiver esses também)
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Equipe> Equipes { get; set; }
         public DbSet<Agendamento> Agendamentos { get; set; }
