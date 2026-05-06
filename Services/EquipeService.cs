@@ -108,6 +108,15 @@ namespace WashApi.Services
             {
                 var equipe = await FindById(id);
 
+                var possuiAgendamentos = await _context.Agendamentos.AnyAsync(x => x.EquipeId == id);
+                var possuiFuncionarios = await _context.FuncionariosEquipe.AnyAsync(x => x.EquipeId == id);
+
+                if (possuiAgendamentos || possuiFuncionarios)
+                {
+                    throw new ErrorServiceException("Equipe não pode ser excluída",
+                        c => c.Conflict(new { message = $"A equipe #{id} possui agendamentos ou funcionários vinculados e não pode ser excluída." }));
+                }
+
                 _context.Equipes.Remove(equipe);
                 await _context.SaveChangesAsync();
             }

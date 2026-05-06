@@ -94,6 +94,14 @@ namespace WashApi.Services
             {
                 var cliente = await FindById(id);
 
+                var possuiAgendamentos = await _context.Agendamentos.AnyAsync(x => x.ClienteId == id);
+
+                if (possuiAgendamentos)
+                {
+                    throw new ErrorServiceException("Cliente não pode ser excluído",
+                        c => c.Conflict(new { message = $"O cliente #{id} possui agendamentos vinculados e não pode ser excluído." }));
+                }
+
                 _context.Clientes.Remove(cliente);
                 await _context.SaveChangesAsync();
             }
