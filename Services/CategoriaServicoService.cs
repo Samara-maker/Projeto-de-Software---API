@@ -108,6 +108,14 @@ namespace WashApi.Services
             {
                 var categoria = await FindById(id);
 
+                var possuiServicos = await _context.Servicos.AnyAsync(x => x.CategoriaId == id);
+
+                if (possuiServicos)
+                {
+                    throw new ErrorServiceException("Categoria não pode ser excluída",
+                        c => c.Conflict(new { message = $"A categoria #{id} possui serviços vinculados e não pode ser excluída." }));
+                }
+
                 _context.CategoriasServico.Remove(categoria);
                 await _context.SaveChangesAsync();
             }

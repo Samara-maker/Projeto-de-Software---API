@@ -12,7 +12,6 @@ builder.Services.AddDbContext<AppDbContext>(
     options => options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 32)))
 );
 
-// Controllers + JSON
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
