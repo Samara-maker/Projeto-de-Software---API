@@ -1,21 +1,37 @@
-using WashApi.DataContexts;
-using WashApi.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using WashApi.DataContexts;
+using WashApi.Profiles;
+using WashApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Controllers
-builder.Services.AddControllers();
+// Banco de dados
+var connectionString = builder.Configuration.GetConnectionString("mysql");
+builder.Services.AddDbContext<AppDbContext>(
+    options => options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 32)))
+);
+
+// Controllers + JSON
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// DbContext
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-);
-
 // AutoMapper
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<ClienteProfile>();
+    cfg.AddProfile<FuncionarioProfile>();
+    //cfg.AddProfile<EquipeProfile>();
+    //cfg.AddProfile<CategoriaServicoProfile>();
+    //cfg.AddProfile<ServicoProfile>();
+});
 
 // Services
 builder.Services.AddScoped<ClienteService>();
@@ -25,9 +41,6 @@ builder.Services.AddScoped<CategoriaServicoService>();
 builder.Services.AddScoped<ServicoService>();
 builder.Services.AddScoped<AgendamentoService>();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -36,10 +49,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
