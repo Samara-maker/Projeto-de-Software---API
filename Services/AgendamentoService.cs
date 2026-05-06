@@ -27,7 +27,7 @@ namespace WashApi.Services
                     .Include(a => a.Funcionario)
                     .Include(a => a.Equipe)
                     .Include(a => a.AgendamentoServicos)
-                        .ThenInclude(s => s.Servico)
+                    .ThenInclude(s => s.Servico)
                     .ToListAsync();
             }
             catch (Exception)

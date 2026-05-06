@@ -28,9 +28,9 @@ builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile<ClienteProfile>();
     cfg.AddProfile<FuncionarioProfile>();
-    //cfg.AddProfile<EquipeProfile>();
-    //cfg.AddProfile<CategoriaServicoProfile>();
-    //cfg.AddProfile<ServicoProfile>();
+    cfg.AddProfile<EquipeProfile>();
+    cfg.AddProfile<CategoriaServicoProfile>();
+    cfg.AddProfile<ServicoProfile>();
 });
 
 // Services
