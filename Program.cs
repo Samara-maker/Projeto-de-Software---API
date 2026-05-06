@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Controllers
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -17,6 +19,11 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Services
 builder.Services.AddScoped<ClienteService>();
+builder.Services.AddScoped<FuncionarioService>();
+builder.Services.AddScoped<EquipeService>();
+builder.Services.AddScoped<CategoriaServicoService>();
+builder.Services.AddScoped<ServicoService>();
+builder.Services.AddScoped<AgendamentoService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
