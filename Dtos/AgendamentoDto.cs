@@ -10,10 +10,10 @@ namespace WashApi.Dtos
         [Required(ErrorMessage = "A data é obrigatória")]
         public DateTime Data { get; set; }
 
-        [Required(ErrorMessage = "O horário de início é obrigatório")]
+        [Required(ErrorMessage = "Informe o horário inicial")]
         public TimeSpan HorarioInicio { get; set; }
 
-        [Required(ErrorMessage = "O horário de fim é obrigatório")]
+        [Required(ErrorMessage = "Informe o horário final")]
         public TimeSpan HorarioFim { get; set; }
 
         public string? Observacao { get; set; }
