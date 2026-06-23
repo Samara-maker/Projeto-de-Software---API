@@ -7,7 +7,7 @@ namespace WashApi.Dtos
         [Required(ErrorMessage = "O cliente é obrigatório")]
         public int ClienteId { get; set; }
 
-        [Required(ErrorMessage = "A data é obrigatória")]
+        [Required(ErrorMessage = "Informe a data")]
         public DateTime Data { get; set; }
 
         [Required(ErrorMessage = "Informe o horário inicial")]
