@@ -4,7 +4,7 @@ namespace WashApi.Dtos
 {
     public class AgendamentoDto
     {
-        [Required(ErrorMessage = "O cliente é obrigatório")]
+        [Required(ErrorMessage = "Informe o cliente")]
         public int ClienteId { get; set; }
 
         [Required(ErrorMessage = "Informe a data")]
